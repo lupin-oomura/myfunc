@@ -187,21 +187,20 @@ class myopenai :
     #     return conversation
 
 
-    # def myjson(self, response:str)->dict :
-    #     # JSON形式の文字列をPythonのリストに変換
-    #     if '```json\n' in response :
-    #         nakami = response.split('```json\n')[1]
-    #         nakami = nakami.split('\n```')[0] if '\n```' in nakami else nakami
+    def myjson(self, response:str)->dict :
+        # JSON形式の文字列をPythonのリストに変換
+        if '```json\n' in response :
+            nakami = response.split('```json\n')[1]
+            nakami = nakami.split('\n```')[0] if '\n```' in nakami else nakami
                 
-    #     elif '```' in response :
-    #         nakami = response.split('```\n')[1]
-    #         nakami = nakami.split('\n```')[0] if '\n```' in nakami else nakami
-    #     else :
-    #         nakami = response
+        elif '```' in response :
+            nakami = response.split('```\n')[1]
+            nakami = nakami.split('\n```')[0] if '\n```' in nakami else nakami
+        else :
+            nakami = response
 
-    #     print(nakami)
-    #     jsondata = json.loads(nakami)
-    #     return jsondata
+        jsondata = json.loads(nakami)
+        return jsondata
 
     # def getdata_from_vtt(self, vtt_file_path:str) -> list :
 
