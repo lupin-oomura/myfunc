@@ -9,4 +9,6 @@ setup(
     author='Your Name',
     author_email='shin.oomura@gmail.com',
     description='A simple OpenAI function package',
+
 )
+
