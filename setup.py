@@ -3,8 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='myfunc',
     version='0.1',
-    packages=find_packages(where="myfunc"),
-    package_dir={"": "myfunc"},
+    packages=find_packages(),
     install_requires=[],
     url='https://github.com/lupin-oomura/myfunc.git',
     author='Shin Oomura',
