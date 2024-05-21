@@ -1,6 +1,6 @@
 # pip install git+https://github.com/lupin-oomura/myfunc.git
 
-import myfunc
+from myfunc import myopenai
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -17,7 +17,7 @@ def image_generate(mo) :
     print(image_url)
 
 if __name__ == '__main__' :
-    mo = myopenai2.myopenai()
+    mo = myopenai.myopenai()
     text_generate(mo)
     # image_generate(mo)
     # mo.pdf_to_vector(r'C:\temp\Apps\Python\st_toranomaki\【御請求書】テスト.pdf')
