@@ -4,7 +4,12 @@ setup(
     name='myfunc',
     version='0.1',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        'streamlit',
+        'openai',
+        'python-dotenv',
+        'requests',
+    ],
     url='https://github.com/lupin-oomura/myfunc.git',
     author='Shin Oomura',
     author_email='shin.oomura@gmail.com',
