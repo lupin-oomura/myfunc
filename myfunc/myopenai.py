@@ -161,7 +161,11 @@ class myopenai :
             print("画像のダウンロードに失敗しました。")
             
 
-
+    def transcribe_audio(self, audio_file, model:str="whisper-1"):
+        return self.client.audio.transcriptions.create(
+            model=model,
+            file=audio_file
+        )
 
 
     # #会話の読み込みを行う関数を定義
