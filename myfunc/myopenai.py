@@ -5,6 +5,7 @@ import  os
 import datetime
 import json
 import re #正規表現チェック用
+import uuid
 
 import requests #画像downloadで使用
 
@@ -66,8 +67,11 @@ class myopenai :
     thread       = None
     messages     = None
     mystreamlit  = None
+    unique_id    = None #ユーザー固有のID（音声ファイルとかの名前になる）
+
 
     def __init__(self, myst=None, model:str="gpt-4o", systemmessage:str="") :
+        self.unique_id = str(uuid.uuid4())
         self.client = OpenAI()
         self.mystreamlit = myst
 
@@ -166,6 +170,37 @@ class myopenai :
             model=model,
             file=audio_file
         )
+
+
+
+
+    def mytexttospeech(self, text:str, voice:str="alloy", foldername:str='', filename:str=None, model:str='tts-1') -> str :
+        """
+        alloy : アナウンサー的な男性
+        echo : 渋い声のアナウンサー的な男性
+        fable : 高い声のアナウンサー的な男性
+        onyx : かなり低い俳優的な男性
+        nova : アナウンサー的な女性
+        shimmer : 低めの声の女性
+        """
+        if filename is None :
+            fn = f'tts_{self.unique_id}.mp3'
+        else :
+            fn = filename
+
+        response = self.client.audio.speech.create(
+            model=model,
+            voice=f"{voice}",
+            input=text,
+        )
+
+        if os.path.exists(os.path.join(foldername, fn)) :
+            os.remove(os.path.join(foldername, fn)) #ファイル削除
+        with open(os.path.join(foldername, fn), "wb") as file:
+            file.write(response.content)
+
+        return fn
+    
 
 
     # #会話の読み込みを行う関数を定義
